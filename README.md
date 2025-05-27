@@ -6,6 +6,7 @@
 - **React.js**
 - Next.js
 - **TypeScript**
+- **React Query**
 - Tailwind CSS
 - pnpm
 

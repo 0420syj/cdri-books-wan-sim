@@ -3,6 +3,7 @@ import NoResult from "@/components/book/no-result";
 import Image from "next/image";
 import { Body2, Caption, Title3 } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
+import { Icon } from "../ui/icon";
 
 interface SearchResultsProps {
   data:
@@ -76,7 +77,7 @@ const BookCard = ({ book, isLastBook, lastBookRef }: BookCardProps) => {
 
           <div className="flex items-center gap-2">
             <Button
-              className="px-5 py-[13px] bg-palette-primary rounded-lg hover:bg-palette-primary-hover hover:opacity-80 transition-opacity"
+              className="px-5 py-[13px] bg-palette-primary rounded-lg hover:bg-palette-primary-hover hover:opacity-80 transition-opacity w-[115px] h-12"
               onClick={() => {
                 // TODO
               }}
@@ -84,12 +85,15 @@ const BookCard = ({ book, isLastBook, lastBookRef }: BookCardProps) => {
               <Caption className="text-palette-white">구매하기</Caption>
             </Button>
             <button
-              className="px-5 py-[13px] bg-palette-light-gray rounded-lg hover:bg-palette-light-gray-hover hover:opacity-80 transition-opacity"
+              className="px-5 py-[13px] bg-palette-light-gray rounded-lg hover:bg-palette-light-gray-hover hover:opacity-80 transition-opacity w-[115px] h-12"
               onClick={() => {
                 // TODO
               }}
             >
-              <Caption className="text-text-secondary">상세보기</Caption>
+              <div className="flex items-center gap-1">
+                <Caption className="text-text-secondary">상세보기</Caption>
+                <Icon icon="arrow-down" size={14} />
+              </div>
             </button>
           </div>
         </div>

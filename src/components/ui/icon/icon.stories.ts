@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { Icon } from "./icon";
+import { Icon } from ".";
 import { iconKeyList } from "./icon-mapper";
 
 const iconMapping = iconKeyList.reduce(

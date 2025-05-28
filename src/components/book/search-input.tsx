@@ -83,7 +83,9 @@ export function SearchInput({
       >
         <div
           ref={wrapperRef}
-          className="flex-1 bg-[#F5F7FA] rounded-2xl shadow-md px-[10px] py-[10px] transition-all duration-200 flex flex-col"
+          className={`flex-1 bg-[#F5F7FA] px-[10px] py-[10px] flex flex-col relative rounded-t-2xl ${
+            showHistory ? "rounded-b-none" : "rounded-b-2xl"
+          }`}
         >
           <div className="flex items-center">
             <Icon icon="search-box" size={30} />
@@ -94,13 +96,13 @@ export function SearchInput({
               onChange={(e) => setQuery(e.target.value)}
               onFocus={() => setShowHistory(true)}
               placeholder="검색어를 입력하세요"
-              className="w-full px-4 py-2 rounded bg-[#F5F7FA] border-none focus:outline-none focus:ring-2 focus:ring-blue-200 placeholder:text-gray-400 text-base"
+              className="w-full px-4 py-2 rounded-b-none bg-[#F5F7FA] border-none focus:outline-none focus:ring-2 focus:ring-blue-200 placeholder:text-text-subtitle text-base"
             />
           </div>
           {showHistory && (
-            <div className="w-full mt-4">
+            <div className="absolute left-0 right-0 top-full z-10 mt-0 bg-[#F5F7FA] rounded-t-none rounded-b-2xl px-4 py-4">
               {searchHistory.length > 0 ? (
-                <ul className="w-full">
+                <ul className="w-full pl-10 overflow-y-auto transition-all duration-200 max-h-40">
                   {searchHistory.map((term) => (
                     <li
                       key={term}

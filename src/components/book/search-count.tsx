@@ -7,7 +7,7 @@ interface SearchCountProps {
 
 export function SearchCount({ totalCount, hasSearched }: SearchCountProps) {
   return (
-    <div className="mb-4">
+    <div className="flex flex-row gap-4">
       <Caption className="text-text-primary">도서 검색 결과</Caption>
       <div className="flex">
         <Caption className="text-text-primary">총&nbsp;</Caption>

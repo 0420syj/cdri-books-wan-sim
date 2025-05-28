@@ -22,7 +22,7 @@ export default function BookSearchPage() {
   const hasSearched = searchQuery.trim().length > 0;
 
   return (
-    <div className="p-4">
+    <div className="flex flex-col gap-4 p-4">
       <SearchInput
         query={query}
         setQuery={setQuery}
@@ -31,7 +31,7 @@ export default function BookSearchPage() {
       />
 
       {error && (
-        <div className="text-red-500 mb-4">책 검색 중 오류가 발생했습니다.</div>
+        <div className="mb-4 text-red-500">책 검색 중 오류가 발생했습니다.</div>
       )}
 
       <SearchCount totalCount={totalCount} hasSearched={hasSearched} />

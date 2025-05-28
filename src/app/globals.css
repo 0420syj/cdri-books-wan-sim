@@ -41,6 +41,18 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme {
+  --color-palette-primary: #4880EE;
+  --color-palette-red: #E84118;
+  --color-palette-gray: #DADADA;
+  --color-palette-light-gray: #F2F4F6;
+  --color-palette-white: #FFFFFF;
+  --color-palette-black: #222222;
+  --color-text-primary: #353C49;
+  --color-text-secondary: #6D7582;
+  --color-text-subtitle: #8D94A0;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

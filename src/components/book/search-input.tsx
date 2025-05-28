@@ -102,7 +102,7 @@ export function SearchInput({
           {showHistory && (
             <div className="absolute left-0 right-0 top-full z-50 mt-0 bg-[#F5F7FA] rounded-t-none rounded-b-2xl px-4 py-4">
               {searchHistory.length > 0 ? (
-                <ul className="w-full pl-10 overflow-y-auto transition-all duration-200 max-h-40">
+                <ul className="w-full pl-10 overflow-y-auto transition-all duration-200">
                   {searchHistory.map((term) => (
                     <li
                       key={term}

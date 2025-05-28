@@ -5,6 +5,7 @@ import { Body2, Caption, Small, Title3 } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { Icon } from "../ui/icon";
 import { useState } from "react";
+import Link from "next/link";
 
 interface SearchResultsProps {
   data:
@@ -127,14 +128,14 @@ const BookCard = ({
                     </Title3>
                   </div>
                 )}
-                <Button
-                  className="w-[238px] h-12 mt-2 bg-palette-primary rounded-lg hover:bg-palette-primary-hover hover:opacity-80 transition-opacity"
-                  onClick={() => {
-                    /* 구매 로직 */
-                  }}
+                <Link
+                  href={book.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[238px] h-12 mt-2 bg-palette-primary rounded-lg hover:bg-palette-primary-hover hover:opacity-80 transition-opacity flex items-center justify-center"
                 >
                   <Caption className="text-palette-white">구매하기</Caption>
-                </Button>
+                </Link>
               </div>
             </div>
           </>
@@ -168,14 +169,14 @@ const BookCard = ({
                     </Title3>
                   )}
                 </div>
-                <Button
-                  className="w-[115px] h-12 bg-palette-primary rounded-lg hover:bg-palette-primary-hover hover:opacity-80 transition-opacity"
-                  onClick={() => {
-                    /* 구매 로직 */
-                  }}
+                <Link
+                  href={book.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[115px] h-12 bg-palette-primary rounded-lg hover:bg-palette-primary-hover hover:opacity-80 transition-opacity flex items-center justify-center"
                 >
                   <Caption className="text-palette-white">구매하기</Caption>
-                </Button>
+                </Link>
                 <Button
                   className="w-[115px] h-12 flex items-center gap-1 bg-palette-light-gray rounded-lg hover:bg-palette-light-gray-hover hover:opacity-80 transition-opacity"
                   onClick={onToggle}

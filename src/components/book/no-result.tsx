@@ -1,7 +1,7 @@
 import { Icon } from "@/components/ui/icon";
 import { Caption } from "@/components/ui/typography";
 
-export default function BookSearchResult() {
+export default function NoResult() {
   return (
     <div className="flex flex-col items-center justify-center">
       <Icon icon="icon-book" size={80} />

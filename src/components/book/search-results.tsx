@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Body2, Caption, Small, Title3 } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import { Icon } from "../ui/icon";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 interface SearchResultsProps {
@@ -24,7 +24,11 @@ interface BookCardProps {
   lastBookRef: (node: HTMLDivElement | null) => void;
   isOpen: boolean;
   onToggle: () => void;
+  isWished: boolean;
+  onToggleWish: () => void;
 }
+
+const WISHLIST_KEY = "wishlist-books";
 
 const BookCard = ({
   book,
@@ -32,6 +36,8 @@ const BookCard = ({
   lastBookRef,
   isOpen,
   onToggle,
+  isWished,
+  onToggleWish,
 }: BookCardProps) => {
   const { thumbnail, title, authors, price, sale_price, isbn, contents } = book;
 
@@ -60,10 +66,14 @@ const BookCard = ({
               />
               <button
                 type="button"
-                className="absolute z-10 text-2xl select-none top-2 right-4"
+                className="absolute z-10 text-2xl select-none top-2 right-4 cursor-pointer"
                 aria-label="찜하기"
+                onClick={onToggleWish}
               >
-                <Icon icon="like-line" size={isOpen ? 24 : 16} />
+                <Icon
+                  icon={isWished ? "like-fill" : "like-line"}
+                  size={isOpen ? 24 : 16}
+                />
               </button>
             </>
           ) : (
@@ -204,6 +214,30 @@ export function SearchResults({
   hasSearched,
 }: SearchResultsProps) {
   const [openIsbn, setOpenIsbn] = useState<string | null>(null);
+  const [wishList, setWishList] = useState<BookDocument[]>([]);
+
+  // localStorage에서 찜 목록 불러오기
+  useEffect(() => {
+    const stored = localStorage.getItem(WISHLIST_KEY);
+    if (stored) {
+      setWishList(JSON.parse(stored));
+    }
+  }, []);
+
+  // 찜 추가/삭제
+  const handleToggleWish = (book: BookDocument) => {
+    setWishList((prev) => {
+      const exists = prev.some((b) => b.isbn === book.isbn);
+      let next;
+      if (exists) {
+        next = prev.filter((b) => b.isbn !== book.isbn);
+      } else {
+        next = [book, ...prev];
+      }
+      localStorage.setItem(WISHLIST_KEY, JSON.stringify(next));
+      return next;
+    });
+  };
 
   if (!data?.pages[0]?.documents.length) {
     return <NoResult />;
@@ -214,18 +248,23 @@ export function SearchResults({
 
   return (
     <div className="divide-y">
-      {books.map((book, index) => (
-        <BookCard
-          key={book.isbn}
-          book={book}
-          isLastBook={index === totalBooks - 1}
-          lastBookRef={lastBookRef}
-          isOpen={openIsbn === book.isbn}
-          onToggle={() =>
-            setOpenIsbn(openIsbn === book.isbn ? null : book.isbn)
-          }
-        />
-      ))}
+      {books.map((book, index) => {
+        const isWished = wishList.some((b) => b.isbn === book.isbn);
+        return (
+          <BookCard
+            key={book.isbn}
+            book={book}
+            isLastBook={index === totalBooks - 1}
+            lastBookRef={lastBookRef}
+            isOpen={openIsbn === book.isbn}
+            onToggle={() =>
+              setOpenIsbn(openIsbn === book.isbn ? null : book.isbn)
+            }
+            isWished={isWished}
+            onToggleWish={() => handleToggleWish(book)}
+          />
+        );
+      })}
 
       {isFetchingNextPage && (
         <div className="py-4 text-center text-gray-600">로딩 중...</div>

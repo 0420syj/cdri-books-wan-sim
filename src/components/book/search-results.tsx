@@ -59,7 +59,7 @@ const BookCard = ({
               />
               <button
                 type="button"
-                className="absolute z-10 text-2xl select-none top-1 right-1"
+                className="absolute z-10 text-2xl select-none top-2 right-4"
                 aria-label="찜하기"
               >
                 <Icon icon="like-line" size={isOpen ? 24 : 16} />
@@ -74,23 +74,27 @@ const BookCard = ({
 
         {isOpen ? (
           <>
-            <div className="flex flex-col justify-start flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <Title3 className="text-text-primary line-clamp-1">
-                  {title}
-                </Title3>
-                <Body2 className="text-text-secondary line-clamp-1">
-                  {authors.join(", ")}
-                </Body2>
+            <div className="flex-1 min-w-0 flex flex-col justify-between h-[280px]">
+              <div>
+                <div className="flex items-center gap-2">
+                  <Title3 className="text-text-primary line-clamp-1">
+                    {title}
+                  </Title3>
+                  <Body2 className="text-text-secondary line-clamp-1">
+                    {authors.join(", ")}
+                  </Body2>
+                </div>
               </div>
               <div className="mt-4">
-                <Body2 className="font-bold text-text-primary">책 소개</Body2>
+                <Body2 className="mb-2 font-bold text-text-primary">
+                  책 소개
+                </Body2>
                 <Small className="whitespace-pre-line text-text-primary">
                   {contents}
                 </Small>
               </div>
             </div>
-            <div className="flex flex-col items-end gap-2 min-w-[180px]">
+            <div className="flex flex-col justify-between h-[280px] items-end min-w-[180px]">
               <Button
                 className="w-[115px] h-12 flex items-center gap-1 bg-palette-light-gray rounded-lg hover:bg-palette-light-gray-hover hover:opacity-80 transition-opacity"
                 onClick={onToggle}
@@ -102,74 +106,90 @@ const BookCard = ({
                   className="transition-transform duration-200 rotate-180"
                 />
               </Button>
-              <div className="flex flex-row items-center gap-1">
-                <Small className="text-text-subtitle">원가</Small>
-                <Title3
-                  className={`text-text-primary ${
-                    sale_price && sale_price > 0
-                      ? "line-through font-[350]"
-                      : ""
-                  }`}
-                >
-                  {price.toLocaleString()}원
-                </Title3>
-              </div>
-              {sale_price && sale_price > 0 && (
+              <div className="flex flex-col items-end w-full gap-2">
                 <div className="flex flex-row items-center gap-1">
-                  <Small className="text-text-subtitle">할인가</Small>
-                  <Title3 className="text-text-primary">
-                    {sale_price.toLocaleString()}원
+                  <Small className="text-text-subtitle">원가</Small>
+                  <Title3
+                    className={`text-text-primary ${
+                      sale_price && sale_price > 0
+                        ? "line-through font-[350]"
+                        : ""
+                    }`}
+                  >
+                    {price.toLocaleString()}원
                   </Title3>
                 </div>
-              )}
-              <Button
-                className="w-[238px] h-12 bg-palette-primary rounded-lg hover:bg-palette-primary-hover hover:opacity-80 transition-opacity"
-                onClick={() => {
-                  /* 구매 로직 */
-                }}
-              >
-                <Caption className="text-palette-white">구매하기</Caption>
-              </Button>
+                {sale_price && sale_price > 0 && (
+                  <div className="flex flex-row items-center gap-1">
+                    <Small className="text-text-subtitle">할인가</Small>
+                    <Title3 className="text-text-primary">
+                      {sale_price.toLocaleString()}원
+                    </Title3>
+                  </div>
+                )}
+                <Button
+                  className="w-[238px] h-12 mt-2 bg-palette-primary rounded-lg hover:bg-palette-primary-hover hover:opacity-80 transition-opacity"
+                  onClick={() => {
+                    /* 구매 로직 */
+                  }}
+                >
+                  <Caption className="text-palette-white">구매하기</Caption>
+                </Button>
+              </div>
             </div>
           </>
         ) : (
-          <div className="flex items-center justify-end flex-1 min-w-0 gap-2">
-            <div className="flex items-center gap-2">
-              {sale_price && sale_price > 0 ? (
-                <>
-                  <Body2 className="line-through text-text-secondary">
-                    {price.toLocaleString()}원
-                  </Body2>
-                  <Title3 className="text-text-primary">
-                    {sale_price.toLocaleString()}원
-                  </Title3>
-                </>
-              ) : (
-                <Title3 className="text-text-primary">
-                  {price.toLocaleString()}원
+          <>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <Title3 className="text-text-primary line-clamp-1">
+                  {title}
                 </Title3>
-              )}
+                <Body2 className="text-text-secondary line-clamp-1">
+                  {authors.join(", ")}
+                </Body2>
+              </div>
             </div>
-            <Button
-              className="w-[115px] h-12 bg-palette-primary rounded-lg hover:bg-palette-primary-hover hover:opacity-80 transition-opacity"
-              onClick={() => {
-                /* 구매 로직 */
-              }}
-            >
-              <Caption className="text-palette-white">구매하기</Caption>
-            </Button>
-            <Button
-              className="w-[115px] h-12 flex items-center gap-1 bg-palette-light-gray rounded-lg hover:bg-palette-light-gray-hover hover:opacity-80 transition-opacity"
-              onClick={onToggle}
-            >
-              <Caption className="text-text-secondary">상세보기</Caption>
-              <Icon
-                icon="arrow-down"
-                size={18}
-                className="transition-transform duration-200"
-              />
-            </Button>
-          </div>
+            <div className="flex flex-col items-end gap-2">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2">
+                  {sale_price && sale_price > 0 ? (
+                    <>
+                      <Body2 className="line-through text-text-secondary">
+                        {price.toLocaleString()}원
+                      </Body2>
+                      <Title3 className="text-text-primary">
+                        {sale_price.toLocaleString()}원
+                      </Title3>
+                    </>
+                  ) : (
+                    <Title3 className="text-text-primary">
+                      {price.toLocaleString()}원
+                    </Title3>
+                  )}
+                </div>
+                <Button
+                  className="w-[115px] h-12 bg-palette-primary rounded-lg hover:bg-palette-primary-hover hover:opacity-80 transition-opacity"
+                  onClick={() => {
+                    /* 구매 로직 */
+                  }}
+                >
+                  <Caption className="text-palette-white">구매하기</Caption>
+                </Button>
+                <Button
+                  className="w-[115px] h-12 flex items-center gap-1 bg-palette-light-gray rounded-lg hover:bg-palette-light-gray-hover hover:opacity-80 transition-opacity"
+                  onClick={onToggle}
+                >
+                  <Caption className="text-text-secondary">상세보기</Caption>
+                  <Icon
+                    icon="arrow-down"
+                    size={18}
+                    className="transition-transform duration-200"
+                  />
+                </Button>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>

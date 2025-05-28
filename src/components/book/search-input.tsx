@@ -111,14 +111,14 @@ export function SearchInput({
                       <button
                         type="button"
                         onClick={() => handleHistoryClick(term)}
-                        className="flex-grow text-base text-left truncate text-text-primary hover:underline"
+                        className="flex-grow text-base text-left truncate cursor-pointer text-text-primary hover:underline"
                       >
                         {term}
                       </button>
                       <button
                         type="button"
                         onClick={() => removeFromSearchHistory(term)}
-                        className="p-1 ml-2 rounded-full hover:bg-gray-200"
+                        className="p-1 ml-2 rounded-full cursor-pointer hover:bg-gray-200"
                         aria-label="검색 기록 삭제"
                       >
                         <X className="w-4 h-4 text-gray-400" />

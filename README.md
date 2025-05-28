@@ -7,8 +7,9 @@
 - Next.js
 - **TypeScript**
 - **React Query**
+- Storybook
 - Tailwind CSS
-- pnpm
+- shadcn/ui
 
 ## ⚙️ 실행 방법 및 환경 설정
 
@@ -29,6 +30,17 @@ TODO
 TODO
 
 ## 📦 라이브러리 선택 이유
+
+### Next.js
+TODO
+
+### Storybook
+TODO
+
+### Tailwind CSS
+TODO
+
+### shadcn/ui
 TODO
 
 ## ✨ 강조 하고 싶은 기능

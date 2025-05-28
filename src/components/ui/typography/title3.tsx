@@ -9,7 +9,7 @@ export function Title3({ children, className, ...props }: Title3Props) {
   return (
     <h1
       className={cn(
-        "font-bold text-[18px] leading-[18px] tracking-[0%] text-black",
+        "font-bold text-lg leading-[1.125rem] tracking-[0%] text-black",
         className
       )}
       {...props}

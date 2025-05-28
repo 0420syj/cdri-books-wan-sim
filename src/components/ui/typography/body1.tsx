@@ -9,7 +9,7 @@ export function Body1({ children, className, ...props }: Body1Props) {
   return (
     <p
       className={cn(
-        "font-medium text-[20px] leading-[20px] tracking-[0%] text-black",
+        "font-medium text-xl/5 tracking-[0%] text-black",
         className
       )}
       {...props}

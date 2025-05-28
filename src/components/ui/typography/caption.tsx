@@ -9,7 +9,7 @@ export function Caption({ children, className, ...props }: CaptionProps) {
   return (
     <p
       className={cn(
-        "font-medium text-[16px] leading-[16px] tracking-[0%] text-black",
+        "font-medium text-base/4 tracking-[0%] text-black",
         className
       )}
       {...props}

@@ -2,8 +2,15 @@ import React from "react";
 import IconBook from "./assets/icon-book";
 import LikeLine from "./assets/like-line";
 import LikeFill from "./assets/like-fill";
+import SearchBox from "./assets/search-box";
+import ArrowDown from "./assets/arrow-down";
 
-export type IconKey = "icon-book" | "like-line" | "like-fill";
+export type IconKey =
+  | "icon-book"
+  | "like-line"
+  | "like-fill"
+  | "search-box"
+  | "arrow-down";
 
 type ISvgIconMapper = {
   [key in IconKey]?: {
@@ -24,6 +31,14 @@ export const svgIconMapper: ISvgIconMapper = {
   "like-fill": {
     path: <LikeFill />,
     viewBox: "0 0 24 24",
+  },
+  "search-box": {
+    path: <SearchBox />,
+    viewBox: "0 0 30 30",
+  },
+  "arrow-down": {
+    path: <ArrowDown />,
+    viewBox: "0 0 14 8",
   },
 };
 

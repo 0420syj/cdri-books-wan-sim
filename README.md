@@ -19,7 +19,13 @@ pnpm dev
 ```
 
 ### 🛠️ 환경 설정
-TODO
+1. `.env.local` 파일을 프로젝트 루트 디렉토리에 생성합니다.
+
+2. 이메일로 전달받은 환경 변수를 아래와 같이 추가해주세요.
+```env
+NEXT_PUBLIC_KAKAO_REST_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
 
 ## 🗂️ 폴더 구조 및 주요 코드 설명
 

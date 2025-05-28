@@ -33,13 +33,25 @@ const BookCard = ({ book, isLastBook, lastBookRef }: BookCardProps) => {
     >
       <div className="relative flex-shrink-0 w-20 h-28">
         {thumbnail ? (
-          <Image
-            src={thumbnail}
-            alt={title}
-            fill
-            className="object-contain"
-            sizes="80px"
-          />
+          <>
+            <Image
+              src={thumbnail}
+              alt={title}
+              fill
+              className="object-contain"
+              sizes="80px"
+            />
+            <button
+              type="button"
+              className="absolute z-10 text-2xl select-none top-1 right-1"
+              onClick={() => {
+                // TODO: 하트 토글 기능 구현 예정
+              }}
+              aria-label="찜하기"
+            >
+              <Icon icon="like-line" size={16} />
+            </button>
+          </>
         ) : (
           <div className="flex items-center justify-center w-full h-full bg-gray-100">
             <Body2 className="text-text-secondary">이미지 없음</Body2>

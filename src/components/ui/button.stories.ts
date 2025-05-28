@@ -5,7 +5,7 @@ import { fn } from "storybook/test";
 import { Button } from "./button";
 
 const meta = {
-  title: "Button",
+  title: "Elements/Button",
   component: Button,
   parameters: {
     layout: "centered",

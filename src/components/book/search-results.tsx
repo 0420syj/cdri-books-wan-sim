@@ -53,7 +53,7 @@ const BookCard = ({
 
   return (
     <div
-      key={isbn}
+      key={`${book.isbn}-${isLastBook ? 1 : 0}`}
       ref={isLastBook ? lastBookRef : null}
       className={`transition-all duration-300 border-b bg-white ${
         isOpen ? "shadow-lg py-8" : "py-4"
@@ -262,7 +262,7 @@ export function SearchResults({
         const isWished = wishList.some((b) => b.isbn === book.isbn);
         return (
           <BookCard
-            key={book.isbn}
+            key={`${book.isbn}-${index}`}
             book={book}
             isLastBook={index === totalBooks - 1}
             lastBookRef={lastBookRef}

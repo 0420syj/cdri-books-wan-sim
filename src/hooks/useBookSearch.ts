@@ -11,6 +11,10 @@ type InfiniteQueryData = {
 export function useBookSearch() {
   const [query, setQuery] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchType, setSearchType] = useState<
+    "title" | "person" | "publisher" | ""
+  >("");
+  const [searchKeyword, setSearchKeyword] = useState("");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const {
@@ -21,19 +25,25 @@ export function useBookSearch() {
     isLoading,
     error,
   } = useInfiniteQuery<BookSearchResponse, Error, InfiniteQueryData>({
-    queryKey: ["books", searchQuery],
+    queryKey: [
+      "books",
+      searchType ? `${searchType}:${searchKeyword}` : searchQuery,
+    ],
     queryFn: ({ pageParam = 1 }) =>
       searchBooks({
-        query: searchQuery.trim(),
+        query: searchType ? searchKeyword.trim() : searchQuery.trim(),
         page: pageParam as number,
         size: 10,
         sort: "accuracy",
+        target: searchType || undefined,
       }),
     getNextPageParam: (lastPage, allPages) => {
       if (lastPage.meta.is_end) return undefined;
       return allPages.length + 1;
     },
-    enabled: searchQuery.trim().length > 0,
+    enabled: searchType
+      ? searchKeyword.trim().length > 0
+      : searchQuery.trim().length > 0,
     initialPageParam: 1,
   });
 
@@ -50,10 +60,24 @@ export function useBookSearch() {
     [fetchNextPage, hasNextPage]
   );
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = (
+    e: React.FormEvent,
+    type?: "title" | "author" | "publisher",
+    keyword?: string
+  ) => {
     e.preventDefault();
-    if (!query.trim()) return;
-    setSearchQuery(query);
+    if (type && keyword) {
+      const kakaoType = type === "author" ? "person" : type;
+      setQuery("");
+      setSearchQuery("");
+      setSearchType(kakaoType);
+      setSearchKeyword(keyword);
+    } else {
+      if (!query.trim()) return;
+      setSearchType("");
+      setSearchKeyword("");
+      setSearchQuery(query);
+    }
   };
 
   const totalCount = data?.pages[0]?.meta.total_count ?? 0;
@@ -69,5 +93,9 @@ export function useBookSearch() {
     lastBookRef,
     handleSearch,
     totalCount,
+    searchType,
+    setSearchType,
+    searchKeyword,
+    setSearchKeyword,
   };
 }

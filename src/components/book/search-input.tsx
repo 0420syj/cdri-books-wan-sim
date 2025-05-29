@@ -64,7 +64,9 @@ export function SearchInput({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    addToSearchHistory(query);
+    const trimmedQuery = query.trim();
+    setQuery(trimmedQuery);
+    addToSearchHistory(trimmedQuery);
     handleSearch(e);
     setShowHistory(false);
   };

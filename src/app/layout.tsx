@@ -33,7 +33,7 @@ export default function RootLayout({
       <body className={`${notoSansKR.variable} antialiased`}>
         <QueryProvider>
           <Header />
-          {children}
+          <div className="max-w-[960px] mx-auto">{children}</div>
         </QueryProvider>
       </body>
     </html>

@@ -7,6 +7,16 @@ import { Icon } from "../ui/icon";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+// HTML 엔티티 디코딩 함수
+const decodeHtmlEntities = (text: string) => {
+  const parser = new DOMParser();
+  const dom = parser.parseFromString(
+    `<!doctype html><body>${text}`,
+    "text/html"
+  );
+  return dom.body.textContent || "";
+};
+
 interface SearchResultsProps {
   data:
     | {
@@ -101,7 +111,7 @@ const BookCard = ({
                   책 소개
                 </Body2>
                 <Small className="whitespace-pre-line text-text-primary">
-                  {contents}
+                  {decodeHtmlEntities(contents)}
                 </Small>
               </div>
             </div>

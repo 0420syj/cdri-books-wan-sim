@@ -34,7 +34,11 @@ export default function BookSearchPage() {
         <div className="mb-4 text-red-500">책 검색 중 오류가 발생했습니다.</div>
       )}
 
-      <SearchCount totalCount={totalCount} hasSearched={hasSearched} />
+      <SearchCount
+        totalCount={totalCount}
+        hasSearched={hasSearched}
+        label="도서 검색 결과"
+      />
 
       <SearchResults
         data={data}

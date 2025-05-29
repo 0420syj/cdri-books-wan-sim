@@ -76,7 +76,7 @@ const BookCard = ({
               />
               <button
                 type="button"
-                className="absolute z-10 text-2xl select-none top-2 right-4 cursor-pointer"
+                className="absolute z-10 text-2xl cursor-pointer select-none top-2 right-4"
                 aria-label="찜하기"
                 onClick={onToggleWish}
               >
@@ -250,7 +250,7 @@ export function SearchResults({
   };
 
   if (!data?.pages[0]?.documents.length) {
-    return <NoResult />;
+    return <NoResult message="검색된 결과가 없습니다." />;
   }
 
   const books = data.pages.flatMap((page) => page.documents);

@@ -49,7 +49,7 @@ export default function BookWishlistPage() {
               hasSearched={true}
             />
           ) : (
-            <NoResult />
+            <NoResult message="찜한 책이 없습니다." />
           )}
         </>
       ) : null}

@@ -25,7 +25,11 @@ export default function BookWishlistPage() {
       <h1 className="mb-4 text-2xl font-bold">내가 찜한 책</h1>
       {loaded ? (
         <>
-          <SearchCount totalCount={books.length} hasSearched={true} />
+          <SearchCount
+            totalCount={books.length}
+            hasSearched={true}
+            label="찜한 책"
+          />
           {books.length > 0 ? (
             <SearchResults
               data={{
